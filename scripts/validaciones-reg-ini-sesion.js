@@ -57,7 +57,7 @@ $(document).ready(function() {
             return;
         }
 
-        // Si todas las validaciones pasan, podrías enviar el formulario
+        // Si todas las validaciones pasan, podría enviar el formulario
         alert("¡Formulario enviado con éxito!");
         
     });
@@ -118,11 +118,13 @@ $(document).ready(function() {
         event.preventDefault(); // Prevenir la presentación del formulario por defecto
 
         // Aquí podrías agregar el código para enviar el formulario
+        window.location.href = 'perfil.html';
     });
 
     // Inicialmente, deshabilitar el botón de inicio de sesión
     $('#registroForm button[type="submit"]').prop('disabled', true);
 });
+
 
 
 

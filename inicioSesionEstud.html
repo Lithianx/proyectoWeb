@@ -10,8 +10,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="estilos/css/custom.css">
     <script src="estilos/js/jquery-3.7.1.min.js"></script>
-    <script src="scripts/validaciones.js"></script>
-    <link rel="stylesheet" href="estilos/css/estilo_iconos_validar.css">
+    <script src="scripts/validaciones-reg-ini-sesion.js"></script>
+    
 
 
 </head>
@@ -52,7 +52,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="inicioSesionEstud.html">Estudiante</a></li>
-              <li><a class="dropdown-item" href="inicioSesionEstud.html">Profesor</a></li>
+              
               <li><a class="dropdown-item" href="perfilAdmin.html">Administracion</a></li>
             </ul>
           </li>
@@ -96,10 +96,10 @@
                           <label for="pwd" class="form-label">Contraseña</label>
                           <input type="password" class="form-control" id="pwd" placeholder="Ingresa contraseña" name="pswd" required>
                           <div class="valid-feedback">Válido.</div>
-                          <div class="invalid-feedback">Por favor ingresa tu contraseña (mínimo 6 caracteres, alfanumérica).</div>
+                          <div class="invalid-feedback">Por favor ingresa tu contraseña (mínimo 6 caracteres).</div>
                       </div>
                       <div class="d-grid gap-2">
-                          <button type="submit" class="btn btn-danger fs-4">Iniciar sesión</button>
+                          <button type="submit" class="btn btn-danger fs-4" id="id-boton-isesion">Iniciar sesión</button>
                           <button type="button" class="btn btn-secondary fs-4" data-bs-toggle="modal" data-bs-target="#registerModal">Registrarse</button>
                       </div>
                   </form>
