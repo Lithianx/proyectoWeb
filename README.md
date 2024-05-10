@@ -1,1 +1,2 @@
-# Nuevo repositorio
+# Validaciones en:
+horas , iniciosesionest, edicionproductos, cursos
