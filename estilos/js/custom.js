@@ -402,26 +402,7 @@ $(document).ready(function() {
         $(this).val(value);
     });
 });
-$(document).ready(function() {
-    $("#formularioPago").validate({
-        // Configuración de validación
-        submitHandler: function(form) {
-            // Si el formulario se valida correctamente, mostramos el mensaje de compra realizada
-            $("#mensajeCompra").fadeIn();
-        }
-    });
-});
-// Función para mostrar el mensaje de compra realizada y redirigir a la página de inicio después de 10 segundos
-function mostrarMensajeCompra() {
-    // Mostrar el mensaje
-    document.getElementById('mensajeCompra').style.display = 'block';
-  
-    // Esperar 10 segundos y luego ocultar el mensaje y redirigir a la página de inicio
-    setTimeout(function() {
-      document.getElementById('mensajeCompra').style.display = 'none';
-      window.location.href = 'index.html'; // Cambia 'index.html' por la URL de tu página de inicio
-    }, 10000); // 10000 milisegundos = 10 segundos
-  }
+
   
   //VALIDACION NOMBRE PERFIL USUARIO
 $(document).ready(function() {
