@@ -7,6 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="estilos/css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="estilos/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <title>Autoescuela</title>
 </head>
 <body>
@@ -91,9 +95,6 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarUs">
                 Editar
             </button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUs">
-              Eliminar
-          </button>
           </div>
         </div>
       </div>
@@ -175,31 +176,31 @@
     </div>
   </div>
       
-<!-- Modal para agregar producto -->
-<div class="modal fade" id="editarUs" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
+<!-- Modal para editar perfil -->
+<div class="modal fade" id="editarUs" tabindex="-1" aria-labelledby="#editUserForm" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="agregarProductoModalLabel">Editar Datos</h5>
+                <h5 class="modal-title" id="#editUserForm">Editar Datos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Formulario para agregar producto -->
-                <form>
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="curso">
-                    </div>
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Correo</label>
-                        <input type="number" class="form-control" id="correo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="direccion" class="form-label">Direccion</label>
-                        <input type="text" class="form-control" id="direccion">
-                    </div>
-                    <!-- Botón de guardar -->
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Guardar</button>
+                <!-- Formulario para editar perfil -->
+                <form id="editUserFormperfil" class=".needs-validation">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombreP" name="nombreP">
+                  </div>
+                  <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="text" class="form-control" id="correo" name="correo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="direccion" class="form-label">Direccion</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion">
+                  </div>
+                  <!-- Botón de guardar -->
+                  <button type="submit" class="btn btn-primary" aria-labelledby="#editUserForm">Guardar</button>
                 </form>
                 <!-- Mensaje de guardado exitoso (oculto por defecto) -->
                 <div class="alert alert-success mt-3 d-none" role="alert">

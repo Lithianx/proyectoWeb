@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="estilos/css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="estilos/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+
     <title>Autoescuela</title>
 </head>
 <body>
@@ -83,6 +89,7 @@
           <th>Cursos</th>
           <th>Numero</th>
           <th>ID</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -93,6 +100,17 @@
           <td>Clase B</td>
           <td>+56966666666</td>
           <td>10</td>
+          <td class="button-container">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+                Editar
+            </button>
+            <button type="button" class="btn btn-danger" onclick="confirmarEliminar(10)">
+              <i class="bi bi-trash"></i>
+          </button>
+          <button type="button" class="btn btn-warning" onclick="confirmarBloquear(10)">
+            <i class="bi bi-ban"></i>
+        </button>
+        </td>
         </tr>
         <tr>
           <td>Marty</td>
@@ -101,6 +119,17 @@
           <td>Clase A3</td>
           <td>+56999999999</td>
           <td>20</td>
+          <td class="button-container">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+                Editar
+            </button>
+            <button type="button" class="btn btn-danger" onclick="confirmarEliminar(20)">
+              <i class="bi bi-trash"></i>
+          </button>
+          <button type="button" class="btn btn-warning" onclick="confirmarBloquear(20)">
+            <i class="bi bi-ban"></i>
+        </button>
+        </td>
         </tr>
         <tr>
           <td>Steve</td>
@@ -109,6 +138,18 @@
           <td>Clase A2</td>
           <td>+56988888888</td>
           <td>30</td>
+          <td class="button-container">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+                Editar
+            </button>
+            <button type="button" class="btn btn-danger" onclick="confirmarEliminar(30)">
+              <i class="bi bi-trash"></i>
+          </button>
+          
+          <button type="button" class="btn btn-warning" onclick="confirmarBloquear(30)">
+            <i class="bi bi-ban"></i>
+        </button>
+        </td>
         </tr>
         <tr>
           <td>Stevie</td>
@@ -117,134 +158,248 @@
           <td>Clase A2, Clase B</td>
           <td>+56977777777</td>
           <td>40</td>
+          <td class="button-container">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+                Editar
+            </button>
+            <button type="button" class="btn btn-danger" onclick="confirmarEliminar(40)">
+              <i class="bi bi-trash"></i>
+          </button>
+          <button type="button" class="btn btn-warning" onclick="confirmarBloquear(40)">
+            <i class="bi bi-ban"></i>
+        </button>
+        </td>
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">
-      Editar
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">
+      Agregar Usuarios
     </button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eliminarUsuario">
-      Eliminar
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#usuariosEliminadosModal">
+      Usuarios Eliminados
     </button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bloquearUsuario">
-      Bloquear
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#usuariosBloqueadosModal">
+      Usuarios Bloqueados
     </button>
   </div>
   
-  <!-- Modal para Editar Usuario -->
-  <div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="agregarProductoModalLabel">Editar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario para agregar producto -->
-                <form>
+<!-- Modal para Agregar Usuario -->
+<div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="agregarUsuarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="agregarUsuarioModalLabel">Agregar Usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <!-- Formulario para agregar usuario -->
+              <form id="agregarUsuarioModal">
                   <div class="mb-3">
-                    <label for="ID" class="form-label">ID</label>
-                    <select class="form-select" id="ID">
-                        <option value="1">10</option>
-                        <option value="2">20</option>
-                        <option value="3">30</option>
-                        <option value="4">40</option>
-                    </select>
-                </div>
-                    <div class="mb-3">
-                        <label for="Nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="Nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="Apellido">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="Email">
-                    </div>
-                    <div class="mb-3">
-                      <label for="tipoCurso" class="form-label">Tipo de Curso</label>
-                      <select class="form-select" id="tipoCurso">
-                          <option value="1">Curso B</option>
-                          <option value="2">Curso A2</option>
-                          <option value="3">Curso A3</option>
-                      </select>
+                      <label for="ID" class="form-label">ID</label>
+                      <input type="number" class="form-control" id="ID" name="ID">
                   </div>
                   <div class="mb-3">
-                    <label for="numero" class="form-label">Numero Telefono</label>
-                    <input type="Number" class="form-control" id="Numero">
-                </div>
-  
-                    <!-- Bot贸n de guardar -->
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Guardar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-  </div>
-  <!-- Modal para Eliminar Usuario -->
-  <div class="modal fade" id="eliminarUsuario" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="agregarProductoModalLabel">Eliminar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario para agregar producto -->
-                <form>
+                      <label for="NombreA" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="NombreA" name="NombreA">
+                  </div>
                   <div class="mb-3">
-                    <label for="ID" class="form-label">ID</label>
-                    <select class="form-select" id="ID">
-                        <option value="1">10</option>
-                        <option value="2">20</option>
-                        <option value="3">30</option>
-                        <option value="4">40</option>
+                      <label for="ApellidoA" class="form-label">Apellido</label>
+                      <input type="text" class="form-control" id="ApellidoA" name="ApellidoA">
+                  </div>
+                  <div class="mb-3">
+                      <label for="Email" class="form-label">Email</label>
+                      <input type="text" class="form-control" id="Email" name="Email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="tipoCurso" class="form-label">Tipo de Curso</label>
+                    <select class="form-select" id="tipoCurso" name="tipoCurso">
+                        <option value="1">Curso B</option>
+                        <option value="2">Curso A2</option>
+                        <option value="3">Curso A3</option>
                     </select>
                 </div>
-                    <!-- Bot贸n de guardar -->
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Eliminar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+                <div class="mb-3">
+                  <label for="numero" class="form-label">Número Teléfono</label>
+                  <input type="number" class="form-control" id="Numero" name="Numero">
+              </div>
+
+                  <!-- Boton de guardar -->
+                  <button type="submit" class="btn btn-primary" aria-labelledby="#agregarUsuarioModalLabel">Confirmar</button>
+                </form>              </form>
+          </div>
+      </div>
   </div>
-  <!-- Modal para Bloquear Usuario -->
-  <div class="modal fade" id="bloquearUsuario" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="agregarProductoModalLabel">Bloquear Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario para agregar producto -->
-                <form>
+</div>
+
+<!-- Modal para Editar Usuario -->
+<div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <!-- Formulario para agregar usuario -->
+              <form id="editarUsuarioModal">
                   <div class="mb-3">
-                    <label for="ID" class="form-label">ID</label>
-                    <select class="form-select" id="ID">
-                        <option value="1">10</option>
-                        <option value="2">20</option>
-                        <option value="3">30</option>
-                        <option value="4">40</option>
+                      <label for="ID" class="form-label">ID</label>
+                      <input type="number" class="form-control" id="ID" name="ID">
+                  </div>
+                  <div class="mb-3">
+                      <label for="NombreB" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="NombreB" name="NombreB">
+                  </div>
+                  <div class="mb-3">
+                      <label for="ApellidoB" class="form-label">Apellido</label>
+                      <input type="text" class="form-control" id="ApellidoB" name="ApellidoB">
+                  </div>
+                  <div class="mb-3">
+                      <label for="Email" class="form-label">Email</label>
+                      <input type="text" class="form-control" id="Email" name="Email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="tipoCurso" class="form-label">Tipo de Curso</label>
+                    <select class="form-select" id="tipoCurso" name="tipoCurso">
+                        <option value="1">Curso B</option>
+                        <option value="2">Curso A2</option>
+                        <option value="3">Curso A3</option>
                     </select>
                 </div>
-                    <!-- Bot贸n de guardar -->
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Bloquear</button>
-                </form>
-            </div>
-        </div>
-    </div>
+                <div class="mb-3">
+                  <label for="numero" class="form-label">Número Teléfono</label>
+                  <input type="number" class="form-control" id="Numero" name="Numero">
+              </div>
+
+                  <!-- Boton de guardar -->
+                  <button type="submit" class="btn btn-primary" aria-labelledby="#agregarUsuarioModalLabel">Confirmar</button>
+                </form>              </form>
+          </div>
+      </div>
   </div>
-
-
-
-
-
-
-
-
+</div>
+ <!-- Modal de Confirmación de Eliminación -->
+<div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="confirmarEliminarModalLabel">Confirmar Eliminación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              ¿Estás seguro de que deseas eliminar este usuario?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-danger" id="confirmarEliminarBtn">Sí</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal para confirmar bloqueo -->
+<div class="modal fade" id="confirmarBloquearModal" tabindex="-1" aria-labelledby="confirmarBloquearModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="confirmarBloquearModalLabel">Confirmar Bloqueo</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              ¿Estás seguro de que deseas bloquear este usuario?
+          </div>
+          <div class="modal-footer">
+              <!-- Botón para cancelar el bloqueo -->
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              <!-- Botón para confirmar el bloqueo -->
+              <button type="button" id="confirmarBloquearBtn" class="btn btn-danger">Sí</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal de usuarios eliminados -->
+<div class="modal fade" id="usuariosEliminadosModal" tabindex="-1" aria-labelledby="usuariosEliminadosModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="usuariosEliminadosModalLabel">Usuarios Eliminados</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <!-- Tabla de usuarios eliminados -->
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Apellido</th>
+                          <th>Fecha</th>
+                          <!-- Agrega más columnas según los datos que quieras mostrar -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Aquí puedes generar dinámicamente las filas de la tabla con los datos de los usuarios eliminados -->
+                      <tr>
+                          <td>1</td>
+                          <td>Juan</td>
+                          <td>Pérez</td>
+                          <td>14/05/2017</td>
+                          <!-- Agrega más celdas según los datos que quieras mostrar -->
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Pepe</td>
+                        <td>Grillo</td>
+                        <td>01/01/1991</td>
+                      </tr>
+                      <!-- Agrega más filas según sea necesario -->
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal de usuarios bloqueados -->
+<div class="modal fade" id="usuariosBloqueadosModal" tabindex="-1" aria-labelledby="usuariosBloqueadosModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="usuariosBloqueadosModalLabel">Usuarios bloqueados</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <!-- Tabla de usuarios bloqueados -->
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Apellido</th>
+                          <th>Fecha</th>
+                          <!-- Agrega más columnas según los datos que quieras mostrar -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Aquí puedes generar dinámicamente las filas de la tabla con los datos de los usuarios eliminados -->
+                      <tr>
+                          <td>99</td>
+                          <td>Dave</td>
+                          <td>Mustaine</td>
+                          <td>18/08/1969</td>
+                          <!-- Agrega más celdas según los datos que quieras mostrar -->
+                      </tr>
+                      <!-- Agrega más filas según sea necesario -->
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>
   <!-- Footer -->
   <footer class="text-center text-lg-start bg-body-tertiary text-muted">
     <!-- Section: Social media -->

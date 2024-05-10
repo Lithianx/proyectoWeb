@@ -215,3 +215,13 @@ h1 {
       .horario-table th {
         background-color: #f2f2f2;
       }
+      .carousel-item img {
+        height: 1000px;  /* Ajusta este valor según tus necesidades */
+        object-fit: cover;  /* Esto asegura que la imagen cubra todo el espacio disponible sin estirarse */
+    
+    }
+    
+    .containerpago {
+        max-width: 960px;
+    }
+    
